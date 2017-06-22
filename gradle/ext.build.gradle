@@ -1,0 +1,14 @@
+// print ext
+// run:
+// gradle -b ext.build.gradle printExt
+//
+ext {
+    linkHomepage = 'https://projects.spring.io/spring-framework'
+}
+
+task printExt {
+    println "linkHomepage:" + linkHomepage
+    println "project.linkHomepage:" + project.linkHomepage
+    println "${project.linkHomepage}"
+    println '${project.linkHomepage}'
+}

@@ -1,0 +1,32 @@
+// run:
+// gradle -b buildscript.build.gradle encode
+//
+buildscript {
+    // specify commons-codes library version
+    ext.commonsCodesVersion = '1.2'
+
+    // buildscript itself needs something to run, use classpath
+    dependencies {
+        // https://mvnrepository.com/artifact/commons-codec/commons-codec
+        classpath group: 'commons-codec', name: 'commons-codec', version: "${commonsCodesVersion}"
+    }
+
+    repositories {
+        // must specify this
+        mavenCentral()
+        // or
+        //
+        // jcenter()
+        // maven { url "https://repo.spring.io/plugins-release" }
+    }
+}
+
+// import library for buildscript
+import org.apache.commons.codec.binary.Base64
+
+task encode {
+    doLast {
+        def byte[] encodedString = new Base64().encode('hello world\n'.getBytes())
+        println new String(encodedString)
+    }
+}
