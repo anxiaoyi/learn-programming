@@ -1,0 +1,16 @@
+// Adding a local directory repository
+repositories {
+    // FlatDirectoryArtifactRepository flatDir(Map<String, ?> args)
+    // FlatDirectoryArtifactRepository flatDir(Closure configureClosure)
+    // FlatDirectoryArtifactRepository flatDir(Action<? super FlatDirectoryArtifactRepository> action)
+    flatDir(dir: '../lib', name: 'libs directory')
+    // https://docs.gradle.org/current/userguide/writing_build_scripts.html#N10B52
+    // 18.7.3. Optional parentheses on method calls
+    // parentheses are optional for method calls
+    flatDir name:'libs' dirs: "$projectDir/libs"
+    flatDir dirs: ["$projectDir/libs1", "$projectDir/libs2"]
+    flatDir {
+        dirs '../project-files', '/volumes/shared-libs'
+        name = 'All dependency directories'
+    }
+}

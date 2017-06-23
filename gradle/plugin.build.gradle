@@ -17,6 +17,8 @@
 // https://plugins.gradle.org/
 //
 // applying a core plugin
+// Core plugins register a short name that can be used as the plugin id.
+// Applying plugins with the plugins DSL
 plugins {
     id 'java'
 }
@@ -24,6 +26,14 @@ plugins {
 // to apply a community plugin from the portal,
 // the fully qualified plugin id must be used
 // applying a community plugin
+//
+// `PluginDependenciesSpec.id(String id)`
 plugins {
     id 'com.jfrog.bintray' version '0.4.1'
 }
+
+// apply binary plugins
+// PluginAware.apply(Closure closure)
+// PluginAware.apply(Map<String, ?> options)
+// PluginAware.apply(Action<? super ObjectConfigurationAction> action)
+apply plugin: 'java'

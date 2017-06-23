@@ -1,0 +1,11 @@
+// Project.configure(objects, configureClosure)
+// Project.configure(objects, configureAction)
+// Project.configure(object, configureClosure)
+configure(subprojects - project(":spring-build-src")) { subproject ->
+    apply plugin 'merge'
+}
+// project(path): Locates a project by path
+// project(path, configureClosure): Locates a project by path and configures it using the given closure.
+project("spring-build-src") {
+	description = "Exposes gradle buildSrc for IDE support"
+}

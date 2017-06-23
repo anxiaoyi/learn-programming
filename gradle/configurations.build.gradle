@@ -1,0 +1,39 @@
+//
+// 1. `gradle -b configurations.build.gradle`
+// 2. `gradle -b configurations.build.gradle dependencies`
+//
+// many plugins add new configurations to `ConfigurationContainer`
+// Java plugin added four configurations to our project
+//
+plugins {
+    id 'java'
+}
+//
+// The underlying implementation is class `ConfigurationContainer`
+configurations {
+    // we group dependencies togetherr in a configuration
+    // A configuration has a name
+    // configurations can extend each other
+    //
+    // With a configuration, we can make logical groups
+    // of dependencies. For example, we can create a
+    // javaCompile configuration to include dependencies needed
+    // to compile the Java code
+    //
+    // `ConfigurationContainer.create(name)`
+    commonsLib {
+        description = 'Common libraries'
+    }
+
+    // we create a new Configuration which named `mainLib`
+    // The underlying implementation is class `Configuration`
+    // `ConfigurationContainer.create(name)`
+    mainLib {
+        description = 'Main libraries'
+        extendsFrom commonsLib
+    }
+}
+
+println configurations['mainLib'].name
+// `ConfigurationContainer.getByName('mainLib')`
+println configurations.commonsLib.name

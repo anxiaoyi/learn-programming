@@ -1,0 +1,24 @@
+// api:
+// https://docs.gradle.org/current/dsl/org.gradle.api.artifacts.dsl.RepositoryHandler.html
+// RepositoryHandler
+repositories {
+    // http://repo1.maven.org/maven2
+    // This is a method() which in class RepositoryHandler
+    mavenCentral()
+    // This is also a method() which in class RepositoryHandler
+    mavenLocal()
+
+    // maven(closure), Newly created instance of
+    // `MavenArtifactRepository` is passed as an argument
+    // to the closure
+    maven {
+        // MavenArtifactRepository extends ArtifactRepository
+        // ArtifactRepository.setName(String name)
+        name = 'Main Maven repository'
+        // MavenArtifactRepository.setUrl(Object url)
+        url = 'http://intranet/repo'
+    }
+
+    // jcenter repository
+    jcenter()
+}
